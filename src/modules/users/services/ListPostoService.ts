@@ -1,14 +1,13 @@
 import { getCustomRepository } from 'typeorm';
-import Posto from '../typeorm/entities/Posto';
-import PostoRepository from '../typeorm/repositories/PostoRepository';
+import Posto from '../../typeorm/entities/Posto';
+import PostoRepository from '../../typeorm/repositories/PostoRepository';
 
 class ListPostoService {
-  public async execute(): Promise<Posto[]> {
+  public async execute(id_combustivel: number): Promise<any[]> {
     const postoRepository = getCustomRepository(PostoRepository);
 
-    const postos = postoRepository.find();
-
-    return postos;
+    const detalhes = await postoRepository.findByTipoCombustivel(id_combustivel);
+    return detalhes;
   }
 }
 

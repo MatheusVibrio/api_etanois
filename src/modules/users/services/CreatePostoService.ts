@@ -1,8 +1,8 @@
 import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
-import Posto from '../typeorm/entities/Posto';
-import PostoRepository from '../typeorm/repositories/PostoRepository';
-import EnderecoRepository from '../typeorm/repositories/EnderecoRepository';
+import Posto from '../../typeorm/entities/Posto';
+import PostoRepository from '../../typeorm/repositories/PostoRepository';
+import EnderecoRepository from '../../typeorm/repositories/EnderecoRepository';
 import { hash } from 'bcryptjs';
 
 interface IRequest {

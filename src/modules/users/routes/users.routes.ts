@@ -10,7 +10,7 @@ const postoController = new PostoController();
 
 const upload = multer(uploadConfig)
 
-userRouter.get('/', isAuthenticated ,postoController.index);
+userRouter.get('/' ,postoController.index);
 
 userRouter.post(
   '/',

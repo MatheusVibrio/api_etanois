@@ -1,10 +1,10 @@
 import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
-import PostoRepository from '../typeorm/repositories/PostoRepository'
+import PostoRepository from '../../typeorm/repositories/PostoRepository'
 import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import authConfig from '@config/auth'
-import Posto from '../typeorm/entities/Posto';
+import Posto from '../../typeorm/entities/Posto';
 
 interface IRequest {
   cnpj: string;

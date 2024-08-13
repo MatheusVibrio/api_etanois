@@ -25,6 +25,11 @@ export class CreatePrecoPosto1723550866436 implements MigrationInterface {
                         type: "integer"
                     },
                     {
+                        name: "data_postagem",
+                        type: "timestamp",  
+                        default: "CURRENT_TIMESTAMP" 
+                    },
+                    {
                         name: "fk_id_combustivel",
                         type: "integer"
                     }

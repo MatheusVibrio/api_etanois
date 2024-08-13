@@ -3,7 +3,7 @@ import Posto from "./Posto";
 import Tipo_Combustivel from "./Tipo_Combustivel";
 
 
-@Entity('preco_Posto')
+@Entity('preco_posto')
 class Preco_Posto {
   @PrimaryGeneratedColumn('increment') 
   id_lcto: number; 
