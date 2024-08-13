@@ -9,10 +9,10 @@ interface IRequest {
   nome: string;
   cnpj: string;
   senha: string;
-  fk_id_endereco: string;
+  fk_id_endereco: number;
 }
 
-class CreateUserService {
+class CreatePostoService {
   public async execute({ nome, cnpj, senha, fk_id_endereco}: IRequest): Promise<Posto> {
     const vPostoRepository = getCustomRepository(PostoRepository);
     const vEnderecoRepository = getCustomRepository(EnderecoRepository);
@@ -27,6 +27,7 @@ class CreateUserService {
     if (!endereco){
       throw new AppError('Endereço não encontrado.');
     }
+
     // Encriptografando a senha
     const hashedPassword = await hash(senha,8)
 
@@ -35,7 +36,7 @@ class CreateUserService {
     nome,
     cnpj,
     senha: hashedPassword,
-    fk_id_endereco: endereco // Passe a instância da entidade Endereco
+    fk_id_endereco: endereco 
     });
 
     await vPostoRepository.save(posto);
@@ -45,4 +46,4 @@ class CreateUserService {
   }
 }
 
-export default CreateUserService;
+export default CreatePostoService;

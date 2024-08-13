@@ -10,10 +10,10 @@ export class CreatePosto1723550566037 implements MigrationInterface {
                 columns: [
                     {
                         name: "id_posto",
-                        type: "uuid",
+                        type: "integer",
                         isPrimary: true,
-                        generationStrategy: "uuid",
-                        default: "uuid_generate_v4()"
+                        isGenerated: true,
+                        generationStrategy: "increment"
                     },
                     {
                         name: "nome",
@@ -28,12 +28,11 @@ export class CreatePosto1723550566037 implements MigrationInterface {
                     {
                         name: "senha",
                         type: "varchar",
-                        length: "20"
+                        length: "100"
                     },
                     {
                         name: "fk_id_endereco",
-                        type: "uuid",
-                        isNullable: true // Ou `false` se for obrigatório
+                        type: "integer"
                     }
                 ]
             })

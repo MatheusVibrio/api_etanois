@@ -35,7 +35,7 @@ class CreateSessionsService {
 
     // No campo subject ele irá retornar o id do usuário para facilitar no front-end
     const token = sign({}, authConfig.jwt.secret, {
-      subject: user.id_posto,
+      subject: user.id_posto.toString(),
       expiresIn: authConfig.jwt.expiresIn,
     })
 

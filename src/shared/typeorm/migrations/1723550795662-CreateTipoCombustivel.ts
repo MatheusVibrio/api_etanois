@@ -1,29 +1,45 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class CreateTipoCombustivel1723550795662 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.createTable(
-      new Table({
-        name: "tipo_combustivel",
-        columns: [
-          {
-            name: "id_combustivel",
-            type: "uuid",
-            isPrimary: true,
-            generationStrategy: "uuid",
-            default: "uuid_generate_v4()"
-          },
-          {
-            name: "descricao",
-            type: "varchar(50)"
-          }
-        ]
-      })
-    );
-    } 
+        // Criação da tabela
+        await queryRunner.createTable(
+            new Table({
+                name: "tipo_combustivel",
+                columns: [
+                    {
+                        name: "id_combustivel",
+                        type: "integer",
+                        isPrimary: true,
+                        isGenerated: true,
+                        generationStrategy: "increment"
+                    },
+                    {
+                        name: "descricao",
+                        type: "varchar",
+                        length: "50"  // Defina o comprimento máximo que você deseja
+                    }
+                ]
+            })
+        );
+
+        // Inserção dos dados iniciais
+        await queryRunner.query(`
+            INSERT INTO tipo_combustivel (descricao) VALUES 
+            ('Gasolina comum'),
+            ('Gasolina aditivada'),
+            ('Gasolina premium'),
+            ('Diesel comum'),
+            ('Diesel aditivado'),
+            ('Etanol comum'),
+            ('Etanol aditivado'),
+            ('Gás Natural Veicular');
+        `);
+    }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        // Aqui você pode optar por limpar a tabela ou remover a tabela
         await queryRunner.dropTable("tipo_combustivel");
     }
 }

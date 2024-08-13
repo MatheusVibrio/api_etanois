@@ -2,8 +2,8 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('tipo_Combustivel')
 class Tipo_Combustivel {
-  @PrimaryGeneratedColumn('uuid')
-  id_combustivel: string;
+  @PrimaryGeneratedColumn('increment') 
+  id_combustivel: number; 
 
   @Column()
   descricao: string;

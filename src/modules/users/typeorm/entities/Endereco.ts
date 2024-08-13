@@ -2,8 +2,8 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('endereco')
 class Endereco {
-  @PrimaryGeneratedColumn('uuid')
-  id_endereco: string;
+  @PrimaryGeneratedColumn('increment') 
+  id_endereco: number;  
 
   @Column()
   rua: string;

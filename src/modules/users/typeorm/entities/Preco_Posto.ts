@@ -5,10 +5,10 @@ import Tipo_Combustivel from "./Tipo_Combustivel";
 
 @Entity('preco_Posto')
 class Preco_Posto {
-  @PrimaryGeneratedColumn('uuid')
-  id_lcto: string;
+  @PrimaryGeneratedColumn('increment') 
+  id_lcto: number; 
 
-  @Column()
+  @Column("decimal", { precision: 10, scale: 2 })
   preco: Number;
 
   @ManyToOne(() => Posto)

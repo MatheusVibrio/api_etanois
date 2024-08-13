@@ -19,7 +19,7 @@ userRouter.post(
       nome: Joi.string().required(),
       cnpj: Joi.string().required(), 
       senha: Joi.string().required(),
-      fk_id_endereco: Joi.string().required(),
+      fk_id_endereco: Joi.number().required(),
     },
   }),
   postoController.create,

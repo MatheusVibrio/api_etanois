@@ -9,10 +9,10 @@ export class CreatePrecoPosto1723550866436 implements MigrationInterface {
                 columns: [
                     {
                         name: "id_lcto",
-                        type: "uuid",
+                        type: "integer",
                         isPrimary: true,
-                        generationStrategy: "uuid",
-                        default: "uuid_generate_v4()",
+                        isGenerated: true,
+                        generationStrategy: "increment"
                     },
                     {
                         name: "preco",
@@ -22,11 +22,11 @@ export class CreatePrecoPosto1723550866436 implements MigrationInterface {
                     },
                     {
                         name: "fk_id_posto",
-                        type: "uuid"
+                        type: "integer"
                     },
                     {
                         name: "fk_id_combustivel",
-                        type: "uuid"
+                        type: "integer"
                     }
                 ]
             })
