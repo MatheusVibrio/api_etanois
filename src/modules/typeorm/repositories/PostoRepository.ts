@@ -40,7 +40,8 @@ class PostoRepository extends Repository<Posto>{
         CONCAT(en.cidade, ' - ', en.estado) AS municipio,
         tp.descricao,
         po.data_atualizacao AS atualizacao,
-        pr.preco
+        pr.preco,
+        po.imagem
       FROM posto po
       INNER JOIN endereco en ON po.fk_id_endereco = en.id_endereco
       INNER JOIN preco_posto pr ON pr.fk_id_posto = po.id_posto

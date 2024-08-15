@@ -32,11 +32,11 @@ class CreatePostoService {
     const hashedPassword = await hash(senha,8)
 
     // Agora crie um novo Posto
-    const posto = vPostoRepository.create({
-    nome,
-    cnpj,
-    senha: hashedPassword,
-    fk_id_endereco: endereco 
+     const posto = vPostoRepository.create({
+      nome,
+      cnpj,
+      senha: hashedPassword,
+      fk_id_endereco: endereco,
     });
 
     await vPostoRepository.save(posto);

@@ -36,6 +36,12 @@ export class CreatePosto1723550566037 implements MigrationInterface {
                         isNullable: true,  
                     },
                     {
+                        name: 'imagem', 
+                        type: 'varchar',
+                        length: '255',
+                        isNullable: true,
+                    },
+                    {
                         name: "fk_id_endereco",
                         type: "integer"
                     }

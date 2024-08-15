@@ -2,13 +2,12 @@ import { Router } from 'express'
 import { celebrate, Joi, Segments } from 'celebrate';
 import PostoController from '../controllers/PostoController';
 import isAuthenticated from '../../../shared/http/middlewares/isAuthenticated';
-import multer from 'multer';
-import uploadConfig from '@config/upload';
+import uploadConfig from '@config/uploadConfig';
 
 const userRouter = Router();
 const postoController = new PostoController();
 
-const upload = multer(uploadConfig)
+//const upload = multer(uploadConfig)
 
 userRouter.get('/:id_combustivel' ,postoController.index);
 
@@ -23,6 +22,17 @@ userRouter.post(
     },
   }),
   postoController.create,
+);
+
+userRouter.patch(
+  '/:id',
+  uploadConfig.single('imagem'), // Define o campo de arquivo como 'imagem'
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.number().required(),
+    },
+  }),
+  postoController.updateImage,
 );
 
 

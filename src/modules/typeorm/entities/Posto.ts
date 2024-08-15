@@ -18,6 +18,9 @@ class Posto {
   @Column()
   data_atualizacao: Date;
 
+  @Column({ nullable: true })
+  imagem: string; 
+
   @ManyToOne(() => Endereco)
   @JoinColumn({ name: 'fk_id_endereco' }) 
   fk_id_endereco: Endereco;

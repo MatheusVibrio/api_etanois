@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { celebrate, Joi, Segments } from 'celebrate';
 import isAuthenticated from '../../../shared/http/middlewares/isAuthenticated';
 import multer from 'multer';
-import uploadConfig from '@config/upload';
+import uploadConfig from '@config/uploadConfig';
 import { PrecoPostoController } from '../controllers/PrecoPostoController';
 
 const precoPostoRouter = Router();
@@ -12,6 +12,7 @@ precoPostoRouter.get('/:id_posto' ,precoPosto.detalhes);
 
 precoPostoRouter.put(
   '/',
+  isAuthenticated,
   celebrate({
     [Segments.BODY]: {
       preco: Joi.number().required(),

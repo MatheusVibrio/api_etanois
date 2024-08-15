@@ -5,14 +5,16 @@ import cors from 'cors';
 import routes from './routes'
 import AppError from '@shared/errors/AppError';
 import '@shared/typeorm';
-import uploadConfig from '@config/upload';
+import path from 'path';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-//app.use('/files', express.static(uploadConfig.directory)) // rota para pegar as imagens
 app.use(routes);
+
+const uploadsPath = path.resolve(__dirname, '..', '..', '..', 'uploads');
+app.use('/uploads', express.static(uploadsPath));
 
 app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
   if(error instanceof AppError) {
