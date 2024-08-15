@@ -25,11 +25,6 @@ export class CreatePrecoPosto1723550866436 implements MigrationInterface {
                         type: "integer"
                     },
                     {
-                        name: "data_postagem",
-                        type: "timestamp",  
-                        default: "CURRENT_TIMESTAMP" 
-                    },
-                    {
                         name: "fk_id_combustivel",
                         type: "integer"
                     }
@@ -55,6 +50,28 @@ export class CreatePrecoPosto1723550866436 implements MigrationInterface {
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
         }));
+
+        await queryRunner.query(`
+            CREATE OR REPLACE FUNCTION update_data_atualizacao()
+            RETURNS TRIGGER AS $$
+            BEGIN
+                IF OLD.preco <> NEW.preco THEN
+                    UPDATE posto
+                    SET data_atualizacao = NOW()
+                    WHERE id_posto = NEW.fk_id_posto;
+                END IF;
+                
+                RETURN NEW;
+            END;
+            $$ LANGUAGE plpgsql;
+        `);
+
+        await queryRunner.query(`
+            CREATE TRIGGER trigger_update_data_atualizacao
+            AFTER UPDATE OF preco ON preco_posto
+            FOR EACH ROW
+            EXECUTE FUNCTION update_data_atualizacao();
+        `);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
@@ -76,5 +93,10 @@ export class CreatePrecoPosto1723550866436 implements MigrationInterface {
 
         // Remover a tabela `preco_posto`
         await queryRunner.dropTable("preco_posto");
+
+        await queryRunner.query(`
+            DROP TRIGGER IF EXISTS trigger_update_data_atualizacao ON preco_posto;
+            DROP FUNCTION IF EXISTS update_data_atualizacao;
+        `);
     }
 }

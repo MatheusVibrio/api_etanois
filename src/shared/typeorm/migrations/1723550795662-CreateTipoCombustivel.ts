@@ -29,12 +29,8 @@ export class CreateTipoCombustivel1723550795662 implements MigrationInterface {
             INSERT INTO tipo_combustivel (descricao) VALUES 
             ('Gasolina comum'),
             ('Gasolina aditivada'),
-            ('Gasolina premium'),
-            ('Diesel comum'),
-            ('Diesel aditivado'),
-            ('Etanol comum'),
-            ('Etanol aditivado'),
-            ('Gás Natural Veicular');
+            ('Diesel'),
+            ('Etanol');
         `);
     }
 

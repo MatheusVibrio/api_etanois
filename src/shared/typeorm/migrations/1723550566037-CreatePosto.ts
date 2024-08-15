@@ -30,6 +30,11 @@ export class CreatePosto1723550566037 implements MigrationInterface {
                         type: "varchar",
                         length: "100"
                     },
+                     {
+                        name: "data_atualizacao",
+                        type: "timestamp",
+                        isNullable: true,  
+                    },
                     {
                         name: "fk_id_endereco",
                         type: "integer"
@@ -47,6 +52,26 @@ export class CreatePosto1723550566037 implements MigrationInterface {
             onDelete: "CASCADE",
             onUpdate: "CASCADE"
         }));
+
+        await queryRunner.query(`
+            CREATE OR REPLACE FUNCTION public.insert_preco_posto()
+            RETURNS trigger
+            LANGUAGE plpgsql
+            AS $function$
+            BEGIN
+            INSERT INTO preco_posto (preco, fk_id_posto, fk_id_combustivel)
+            SELECT 0, NEW.id_posto, tc.id_combustivel
+            FROM tipo_combustivel tc;
+            
+            RETURN NEW;
+            END;
+            $function$;
+
+            CREATE TRIGGER after_posto_insert
+            AFTER INSERT ON posto
+            FOR EACH ROW
+            EXECUTE FUNCTION insert_preco_posto();
+        `);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
@@ -58,8 +83,13 @@ export class CreatePosto1723550566037 implements MigrationInterface {
             await queryRunner.dropForeignKey("posto", foreignKey);
         }
         }
-
+        
         // Remover a tabela `posto`
         await queryRunner.dropTable("posto");
+
+         await queryRunner.query(`
+            DROP TRIGGER IF EXISTS after_posto_insert ON posto;
+            DROP FUNCTION IF EXISTS insert_preco_posto;
+        `);
     }
 }

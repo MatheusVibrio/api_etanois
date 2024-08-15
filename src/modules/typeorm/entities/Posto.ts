@@ -15,6 +15,9 @@ class Posto {
   @Column()
   senha: string;
 
+  @Column()
+  data_atualizacao: Date;
+
   @ManyToOne(() => Endereco)
   @JoinColumn({ name: 'fk_id_endereco' }) 
   fk_id_endereco: Endereco;

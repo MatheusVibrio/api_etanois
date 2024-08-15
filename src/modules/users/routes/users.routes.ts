@@ -10,7 +10,7 @@ const postoController = new PostoController();
 
 const upload = multer(uploadConfig)
 
-userRouter.get('/' ,postoController.index);
+userRouter.get('/:id_combustivel' ,postoController.index);
 
 userRouter.post(
   '/',

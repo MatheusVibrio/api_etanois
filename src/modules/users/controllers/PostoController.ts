@@ -6,7 +6,7 @@ export default class PostoController {
   public async index(request: Request, response: Response): Promise<Response> {
     const listPosto = new ListPostoService();
 
-    const { id_combustivel } = request.body;
+    const id_combustivel  = request.params.id_combustivel;
 
     if (!id_combustivel) {
       return response.status(400).json({
@@ -14,7 +14,7 @@ export default class PostoController {
         message: 'É obrigatório informar o id_combustivel.',
       });
     }
-    const postos = await listPosto.execute(id_combustivel as number);
+    const postos = await listPosto.execute(id_combustivel);
 
     return response.json(postos)
   }

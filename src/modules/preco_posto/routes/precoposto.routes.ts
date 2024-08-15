@@ -8,9 +8,19 @@ import { PrecoPostoController } from '../controllers/PrecoPostoController';
 const precoPostoRouter = Router();
 const precoPosto = new PrecoPostoController();
 
-const upload = multer(uploadConfig)
+precoPostoRouter.get('/:id_posto' ,precoPosto.detalhes);
 
-precoPostoRouter.get('/' ,precoPosto.detalhes);
+precoPostoRouter.put(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      preco: Joi.number().required(),
+      fk_id_posto: Joi.number().required(), 
+      fk_id_combustivel: Joi.number().required(),
+    },
+  }),
+  precoPosto.update,
+);
 
 
 export default precoPostoRouter
