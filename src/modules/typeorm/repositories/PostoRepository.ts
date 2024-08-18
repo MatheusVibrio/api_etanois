@@ -35,7 +35,7 @@ class PostoRepository extends Repository<Posto>{
 
   public async findByTipoCombustivel(tipoCombustivelId: string): Promise<any[]> {
     const query = `
-      SELECT  po.nome,
+      SELECT  po.id_posto, po.nome,
         CONCAT(en.rua, ', ', en.bairro) AS endereco,
         CONCAT(en.cidade, ' - ', en.estado) AS municipio,
         tp.descricao,
