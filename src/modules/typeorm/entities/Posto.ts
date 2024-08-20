@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import Endereco from "./Endereco";
+import Planos from "./Planos";
 
 @Entity('posto')
 class Posto {
@@ -20,6 +21,10 @@ class Posto {
 
   @Column({ nullable: true })
   imagem: string; 
+
+  @ManyToOne(() => Planos)
+  @JoinColumn({ name: 'fk_id_plano' }) 
+  fk_id_plano: Planos;
 
   @ManyToOne(() => Endereco)
   @JoinColumn({ name: 'fk_id_endereco' }) 

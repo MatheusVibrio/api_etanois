@@ -18,6 +18,8 @@ userRouter.post(
       nome: Joi.string().required(),
       cnpj: Joi.string().required(), 
       senha: Joi.string().required(),
+      imagem: Joi.string().required(),
+      fk_id_plano: Joi.number().required(),
       fk_id_endereco: Joi.number().required(),
     },
   }),

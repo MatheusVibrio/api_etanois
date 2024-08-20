@@ -42,6 +42,10 @@ export class CreatePosto1723550566037 implements MigrationInterface {
                         isNullable: true,
                     },
                     {
+                        name: "fk_id_plano",
+                        type: "integer"
+                    },
+                    {
                         name: "fk_id_endereco",
                         type: "integer"
                     }

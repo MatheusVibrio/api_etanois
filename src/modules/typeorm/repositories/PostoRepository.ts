@@ -46,7 +46,8 @@ class PostoRepository extends Repository<Posto>{
       INNER JOIN endereco en ON po.fk_id_endereco = en.id_endereco
       INNER JOIN preco_posto pr ON pr.fk_id_posto = po.id_posto
       INNER JOIN tipo_combustivel tp ON tp.id_combustivel = pr.fk_id_combustivel
-      where pr.fk_id_combustivel = $1;
+      where pr.fk_id_combustivel = $1
+      order by po.fk_id_plano desc, pr.preco asc;
     `;
 
     const result = await this.query(query, [tipoCombustivelId]);

@@ -22,7 +22,7 @@ export default class PostoController {
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const {nome, cnpj, senha, fk_id_endereco} = request.body;
+    const {nome, cnpj, senha, imagem, fk_id_plano, fk_id_endereco} = request.body;
 
     const createUser = new CreatePostoService
 
@@ -30,6 +30,8 @@ export default class PostoController {
       nome,
       cnpj,
       senha,
+      imagem,
+      fk_id_plano,
       fk_id_endereco,
     });
 

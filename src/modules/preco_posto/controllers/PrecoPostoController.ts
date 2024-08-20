@@ -33,6 +33,7 @@ export class PrecoPostoController {
         nome: firstItem.nome || 'Nome não disponível',
         endereco: firstItem.endereco || 'Endereço não disponível',
         imagem: firstItem.imagem,
+        plano : firstItem.plano,
         precos: detalhes.reduce((acc, item) => {
           const descricaoNormalizada = item.descricao.toLowerCase().replace(/\s+/g, '_');
           acc[descricaoNormalizada] = parseFloat(item.preco);
