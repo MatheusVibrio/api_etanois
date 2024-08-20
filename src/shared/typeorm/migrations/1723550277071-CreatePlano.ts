@@ -36,10 +36,8 @@ export class CreatePlano1724155607007 implements MigrationInterface {
 
         await queryRunner.query(`
             INSERT INTO planos (nome,descricao,valor) VALUES 
-            ('Grátis', 'Acesso total aos recursos da aplicação, sem suporte dedicado. Uma boa opção para novos usuários que desejam testar a aplicação antes de decidir por um plano pago.', 0),
-            ('Básico', 'Acesso a todos os recursos da aplicação, com suporte básico. Adequado para usuários que precisam de funcionalidades essenciais a um custo reduzido.', 20.00),
-            ('Clássico', 'Inclui todos os recursos essenciais da aplicação, com suporte padrão. Perfeito para usuários que desejam um bom equilíbrio entre custo e benefícios.', 30.00),
-            ('Premium', 'Acesso a todos os recursos da aplicação e suporte prioritário. Ideal para usuários que buscam a melhor experiência e o máximo de funcionalidades e visibilidade.', 45.00);
+            ('Grátis', 'É apresentado junto com os demais postos sem uma posição privlegiada. Uma boa opção para novos usuários que desejam testar a aplicação antes de decidir por um plano pago.', 0),
+            ('Premium', 'Acesso a todos os recursos da aplicação, com suporte básico. Adequado para usuários que desejam alavancar suas vendas, tendo seu posto exibido em uma melhor posição.', 30.00);
         `);
 
         await queryRunner.createForeignKey("posto", new TableForeignKey({
