@@ -1,14 +1,21 @@
-Ao clonar para instalar a node_modules dar: yarn
+## Etanois
 
-Para rodar: yarn dev
+O tema deste projeto é o desenvolvimento de um aplicativo móvel focado na consulta de preços de combustíveis em postos de abastecimento.
 
-Criar o banco a primeira vez no docker (não se esqueça de baixar): docker run --name postgres -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 
-Para rodar o banco após já estar criado: docker run postgres
+## Stack utilizada
 
-insert into endereco(rua,bairro,cidade,estado,cep,telefone)
-values ('Rua das Flores', 'Bairro dos Bairros', 'São Paulo', 'SP', '13735059', '19993057271');
+**Front-end:** React Native
 
-/precos -> rota de detalhes
-/sessions -> rota de autenticação
-/posto -> rota de cadastro de posto e listagem de posto (sem detalhes, necessita de passar o tipo de combustivel)
+**Back-end:** Node, Express 
+
+## Para rodar:
+yarn 
+yarn dev
+
+Segue abaixo o link do Front-end: 
+https://github.com/costabia/app-etanois
+
+Link do figma está a seguir:
+https://www.figma.com/design/pINJ1dcDkQmsFuipIjudoP/Etanois?node-id=6-377&t=GbGgScpOoW5QPDej-1
+
