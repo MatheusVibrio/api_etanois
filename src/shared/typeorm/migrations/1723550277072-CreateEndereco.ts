@@ -43,7 +43,11 @@ export class CreateEndereco1723550277072 implements MigrationInterface {
                         name: "telefone",
                         type: "varchar",
                         length: "15"
-                    },                    
+                    },
+                    {
+                        name: "numero",
+                        type: "integer"
+                    },                          
                 ]
             })
         );

@@ -41,7 +41,8 @@ class PostoRepository extends Repository<Posto>{
         tp.descricao,
         po.data_atualizacao AS atualizacao,
         pr.preco,
-        po.imagem
+        po.imagem,
+        po.fk_id_plano
       FROM posto po
       INNER JOIN endereco en ON po.fk_id_endereco = en.id_endereco
       INNER JOIN preco_posto pr ON pr.fk_id_posto = po.id_posto

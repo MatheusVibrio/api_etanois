@@ -22,6 +22,9 @@ class Endereco {
 
   @Column()
   telefone: string;
+
+  @Column()
+  numero: number;
 }
 
 export default Endereco;
